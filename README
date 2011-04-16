@@ -1,5 +1,4 @@
-A plugin for the Impact javascript game engine (http://impactjs.com/). It is meant to approximate Ruby's symbols, 
-though not exactly.
+A plugin for the Impact javascript game engine (http://impactjs.com/). It is meant to approximate Ruby's symbols, though not exactly.
 
 How to use:
 Create a new plugins folder if one does not exist: lib/plugins
@@ -34,7 +33,7 @@ A number will have been automatically assigned. Saves having to do say
 
 and then having to invoke with this.playerState.RUNNING, etc. Also saves having to set up different states for different entities.
 
-It is a singleton class and meant to be invoked just once at the begining of the game so that the symbols can be used anywhere. The basic usage above adds the symbols directly to the base igEntity class.
+It is a singleton class and meant to be invoked just once at the begining of the game so that the symbols can be used anywhere. The basic usage above adds the symbols directly to the base ig.Entity class.
 
 2) Add symbols to multiple Impact classes:
 
@@ -42,7 +41,7 @@ You can also extend the symbols to other Impact classes by including the classes
 
   init: function(){
         ....
-        new ig.Symbols("RUNNING JUMPING HIDING SWIMMING OVER PAUSED", [ig.Entity, ig.Game, ig.Animation);
+        new ig.Symbols("RUNNING JUMPING HIDING SWIMMING OVER PAUSED", [ig.Entity, ig.Game, ig.Animation]);
         ....
   }
 

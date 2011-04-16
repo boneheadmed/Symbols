@@ -60,6 +60,7 @@ Best practices and caveats:
 1. Use all capital letters for symbols. It makes them easier to find and makes it less likely you'll overwrite one of the base classes' methods.
 2. Don't use COLLIDES or TYPE as these are reserved words in the Entity class.
 3. If you are combining with other Impact classes, be sure to search for reserved words and do not use them as symbols.
-4. I suppose it is possible to use the base ig object, but results may be unpredictable and there is probably a greater chance of overwriting reserved words.
-5. You can also use the underscore for more descriptive symbols or to group them more easily: e.g. PLAYER_STOPPED PLAYER_RUNNING, etc. 
+4. Be sure to declare the symbols in the init of main.js BEFORE loading any levels to ensure that entities will initialized with numbers pre-assigned to the symbols. If not they may be initialized as undefined.
+5. I suppose it is possible to use the base ig object, but results may be unpredictable and there is probably a greater chance of overwriting reserved words.
+6. You can also use the underscore for more descriptive symbols or to group them more easily: e.g. PLAYER_STOPPED PLAYER_RUNNING, etc. 
 

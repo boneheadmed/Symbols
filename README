@@ -1,0 +1,66 @@
+A plugin for the Impact javascript game engine (http://impactjs.com/). It is meant to approximate Ruby's symbols, 
+though not exactly.
+
+How to use:
+Create a new plugins folder if one does not exist: lib/plugins
+Create a new folder called symbols: lib/plugins/symbols
+Place the symbols.js file within that folder.
+Within the main.js file, require: 'plugins.symbols.symbols'
+
+Usage:
+
+1) To add symbols to the base ig.Entity class:
+
+Declare your symbols within your main game's init function:
+
+  init: function(){
+        ....
+        new ig.Symbols("RUNNING JUMPING HIDING SWIMMING");
+        ....
+  }
+
+Within any of your entities you can use the symbols as in:
+    ig.Entity.RUNNING
+
+For example in your player entity's update, you might do:
+   if this.state == ig.Entity.RUNNING
+       //Do running stuff
+   else if this.state == ig.Entity.SWIMMING
+       //Do swimming stuff    
+
+A number will have been automatically assigned. Saves having to do say
+
+  playerState: {RUNNNING: 1, JUMPING: 2, HIDING: 3, SWIMMING: 4}
+
+and then having to invoke with this.playerState.RUNNING, etc. Also saves having to set up different states for different entities.
+
+It is a singleton class and meant to be invoked just once at the begining of the game so that the symbols can be used anywhere. The basic usage above adds the symbols directly to the base igEntity class.
+
+2) Add symbols to multiple Impact classes:
+
+You can also extend the symbols to other Impact classes by including the classes in an array as the second parameter.
+
+  init: function(){
+        ....
+        new ig.Symbols("RUNNING JUMPING HIDING SWIMMING OVER PAUSED", [ig.Entity, ig.Game, ig.Animation);
+        ....
+  }
+
+
+Within your entities and game you can use the symbols as in:
+    ig.Entity.RUNNING or ig.Game.RUNNING or ig.Game.PAUSED or ig.Animation.RUNNING, etc.
+
+Again a number will have been automatically assigned. Saves having to do say
+
+playerState: {RUNNNING: 1, JUMPING: 2, etc}
+gameState: {OVER: 1, PAUSED: 2, RUNNING: 3, etc}
+etc.
+
+
+Best practices and caveats:
+1. Use all capital letters for symbols. It makes them easier to find and makes it less likely you'll overwrite one of the base classes' methods.
+2. Don't use COLLIDES or TYPE as these are reserved words in the Entity class.
+3. If you are combining with other Impact classes, be sure to search for reserved words and do not use them as symbols.
+4. I suppose it is possible to use the base ig object, but results may be unpredictable and there is probably a greater chance of overwriting reserved words.
+5. You can also use the underscore for more descriptive symbols or to group them more easily: e.g. PLAYER_STOPPED PLAYER_RUNNING, etc. 
+

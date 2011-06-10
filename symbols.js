@@ -29,13 +29,12 @@ ig.Symbols = ig.Class.extend({
             
         var nameArray = names.split(" ");
 
-        for(i =0; i < classes.length; i++){
+        for(var i = 0; i < classes.length; i++){
             var currentClass = classes[i];
-            var j = 0;
-            for(j = 0; j < nameArray.length; j++){
+            for(var j = 0; j < nameArray.length; j++){
                 nameArray[j].replace(/^\s+|\s+$/g,"");
                 if (nameArray[j] != "")
-                    currentClass[nameArray[j]] = j;
+                    currentClass[nameArray[j]] = 0x1 << j;
             }
         }
         ig.Symbols.instance = this;

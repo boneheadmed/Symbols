@@ -27,14 +27,21 @@ ig.Symbols = ig.Class.extend({
         if (typeof classes == "undefined") 
             classes = [ig.Entity];
             
-        var nameArray = names.split(" ");
+        var nameArray = names.split(" "),
+            nameArrayLen = nameArray.length;
+        
+        if (nameArrayLen > 30) {
+            throw("Error: ig.Symbols allows a maximum of 30 symbol definitions.");
+        }
 
         for(var i = 0; i < classes.length; i++){
             var currentClass = classes[i];
-            for(var j = 0; j < nameArray.length; j++){
-                nameArray[j].replace(/^\s+|\s+$/g,"");
-                if (nameArray[j] != "")
-                    currentClass[nameArray[j]] = 0x1 << j;
+            for(var j = 0; j < nameArrayLen; j++){
+                var name = nameArray[j];
+                name.replace(/^\s+|\s+$/g, "");
+                if (name) {
+                    currentClass[name] = 0x1 << j;
+                }
             }
         }
         ig.Symbols.instance = this;
